@@ -59,6 +59,16 @@ class Point:
         """
         return self._y
 
+    def reverse(self):
+        """Reverses the point by inverting both x and y values.
+
+        Returns:
+            Point: A new point that is reversed.
+        """
+        new_x = self._x * -1
+        new_y = self._y * -1
+        return Point(new_x, new_y)
+
     def scale(self, factor):
         """
         Scales the point by the provided factor.
