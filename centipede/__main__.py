@@ -15,7 +15,6 @@ from game.services.video_service import VideoService
 from game.shared.color import Color
 from game.shared.point import Point
 
-
 def main():
     
     # create the cast
@@ -36,7 +35,6 @@ def main():
     
     director = Director(video_service)
     director.start_game(cast, script)
-
 
 if __name__ == "__main__":
     main()
