@@ -28,19 +28,14 @@ class DrawActorsAction(Action):
         """
         score = cast.get_first_actor("scores")
         # food = cast.get_first_actor("foods")
-        cycles = cast.get_actors("cycles")
-        cycle1 = cycles[0]
-        cycle2 = cycles[1]
-        cycle1.grow_tail(1)
-        cycle2.grow_tail(1)
-        cycle1_segments = cycle1.get_segments()
-        cycle2_segments = cycle2.get_segments()
+        centipede = cast.get_actors("centipede")
+        centipede1 = centipede[0]
+        centipede_segments = centipede1.get_segments()
         messages = cast.get_actors("messages")
 
         self._video_service.clear_buffer()
         # self._video_service.draw_actor(food)
-        self._video_service.draw_actors(cycle1_segments)
-        self._video_service.draw_actors(cycle2_segments)
+        self._video_service.draw_actors(centipede_segments)
         self._video_service.draw_actor(score)
         self._video_service.draw_actors(messages, True)
         self._video_service.flush_buffer()
