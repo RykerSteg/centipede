@@ -21,7 +21,6 @@ class ControlActorsAction(Action):
         """
         self._keyboard_service = keyboard_service
         self._direction1 = Point(constants.CELL_SIZE, 0)
-        self._direction2 = Point(constants.CELL_SIZE, 0)
 
     def execute(self, cast, script):
         """Executes the control actors action.
@@ -33,7 +32,7 @@ class ControlActorsAction(Action):
         #probably break this into another method
 
 
-        cycles = cast.get_actors("cycles")
+        centipede = cast.get_actors("centipede")
 
         # left
         if self._keyboard_service.is_key_down('a'):
@@ -51,30 +50,5 @@ class ControlActorsAction(Action):
         if self._keyboard_service.is_key_down('s'):
             self._direction1 = Point(0, constants.CELL_SIZE)
         
-        cycle1 = cycles[0]
-        cycle1.turn_head(self._direction1)
-        
-        
-        
-        cycles = cast.get_actors("cycles")
-
-        # left
-        if self._keyboard_service.is_key_down('j'):
-            self._direction2 = Point(-constants.CELL_SIZE, 0)
-        
-        # right
-        if self._keyboard_service.is_key_down('l'):
-            self._direction2 = Point(constants.CELL_SIZE, 0)
-        
-        # up
-        if self._keyboard_service.is_key_down('i'):
-            self._direction2 = Point(0, -constants.CELL_SIZE)
-        
-        # down
-        if self._keyboard_service.is_key_down('k'):
-            self._direction2 = Point(0, constants.CELL_SIZE)
-        
-        cycle2 = cycles[1]
-        cycle2.turn_head(self._direction2)
-
-        
+        centipede = centipede[0]
+        centipede.turn_head(self._direction1)       

@@ -53,9 +53,9 @@ class HandleCollisionsAction(Action):
         Args:
             cast (Cast): The cast of Actors in the game.
         """
-        cycle = cast.get_first_actor("cycles")
-        head = cycle.get_segments()[0]
-        segments = cycle.get_segments()[1:]
+        centipede = cast.get_first_actor("centipede")
+        head = centipede.get_segments()[0]
+        segments = centipede.get_segments()[1:]
         
         for segment in segments:
             if head.get_position().equals(segment.get_position()):
@@ -68,8 +68,8 @@ class HandleCollisionsAction(Action):
             cast (Cast): The cast of Actors in the game.
         """
         if self._is_game_over:
-            cycle = cast.get_first_actor("cycles")
-            segments = cycle.get_segments()
+            centipede = cast.get_first_actor("centipede")
+            segments = centipede.get_segments()
 
             x = int(constants.MAX_X / 2)
             y = int(constants.MAX_Y / 2)
