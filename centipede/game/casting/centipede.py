@@ -55,7 +55,7 @@ class Centipede(Actor):
     
     def _prepare_body(self):
 
-        x = int(30 * constants.CELL_SIZE)
+        x = int(20 * constants.CELL_SIZE)
         y = int(1 * constants.CELL_SIZE)
 
         for i in range(constants.SNAKE_LENGTH):
