@@ -1,0 +1,29 @@
+import constants
+from game.casting.actor import Actor
+from game.shared.point import Point
+
+class Robot(Actor):
+  '''
+  Our blaster thing that is limited to left and right movements at the bottom the the screen
+  '''
+  def __init__(self, color):
+    super().__init__()
+    self._robot_color = color
+    self.prepare_body()
+
+
+  def prepare_body(self):
+    x = int(constants.MAX_X /2)
+    y = int(constants.MAX_Y -15)
+    position = Point(x,y)
+    text = "#"
+
+    robot = Actor()
+    robot.set_position(position)
+    robot.set_text(text)
+    
+    
+
+  
+
+  
