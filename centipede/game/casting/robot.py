@@ -11,7 +11,6 @@ class Robot(Actor):
     self.set_color(color)
     self.prepare_body()
 
-
   def prepare_body(self):
     x = int(constants.MAX_X /2)
     y = int(constants.MAX_Y -15)

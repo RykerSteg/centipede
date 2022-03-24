@@ -5,6 +5,7 @@ import constants
 from game.scripting.action import Action
 from game.shared.point import Point
 from game.casting.centipede import Centipede
+from game.casting.robot import Robot
 
 
 class ControlActorsAction(Action):
@@ -35,33 +36,9 @@ class ControlActorsAction(Action):
         Args:
             cast (Cast): The cast of Actors in the game.
             script (Script): The script of Actions in the game.
-        """
-        #probably break this into another method
-
-        self._player_movement(cast)
+        """    
         self._centipede_movement(cast)
-
-    def _player_movement(self, cast):
-        #centipede = cast.get_actors("centipede")
-
-        # left
-        if self._keyboard_service.is_key_down('a'):
-            self._direction = Point(-constants.CELL_SIZE, 0)
-        
-        # right
-        if self._keyboard_service.is_key_down('d'):
-            self._direction = Point(constants.CELL_SIZE, 0)
-        
-        # up
-        if self._keyboard_service.is_key_down('w'):
-            self._direction = Point(0, -constants.CELL_SIZE)
-        
-        # down
-        if self._keyboard_service.is_key_down('s'):
-            self._direction = Point(0, constants.CELL_SIZE)
-        
-        #centipede = centipede[0]
-        #centipede.turn_head(self._direction1)
+        self._robot_movement(cast)
 
     def _centipede_movement(self, cast):
         centipede = cast.get_first_actor("centipede")
@@ -78,3 +55,16 @@ class ControlActorsAction(Action):
         else:
             centipede.turn_head(Point(self._previous_direction * -1, 0))
             self._rotate = 0
+
+    def _robot_movement(self, cast):
+        robot = cast.get_first_actor("robot")
+        robotDirection = Point(0,0)
+        # left
+        if self._keyboard_service.is_key_down('a'):
+            robotDirection = Point(-constants.CELL_SIZE, 0)
+        
+        # right
+        if self._keyboard_service.is_key_down('d'):
+            robotDirection = Point(constants.CELL_SIZE, 0)
+        
+        robot.set_velocity(robotDirection)
