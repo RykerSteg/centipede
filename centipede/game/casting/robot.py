@@ -8,7 +8,7 @@ class Robot(Actor):
   '''
   def __init__(self, color):
     super().__init__()
-    self._robot_color = color
+    self.set_color(color)
     self.prepare_body()
 
 
@@ -18,9 +18,8 @@ class Robot(Actor):
     position = Point(x,y)
     text = "#"
 
-    robot = Actor()
-    robot.set_position(position)
-    robot.set_text(text)
+    self.set_position(position)
+    self.set_text(text)
     
     
 

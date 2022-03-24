@@ -32,7 +32,7 @@ class DrawActorsAction(Action):
         centipede1 = centipede[0]
         centipede_segments = centipede1.get_segments()
         messages = cast.get_actors("messages")
-        robot = cast.get_actors("robot")
+        robot = cast.get_first_actor("robot")
 
         self._video_service.clear_buffer()
         # self._video_service.draw_actor(food)
