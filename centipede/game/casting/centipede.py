@@ -12,9 +12,9 @@ class Centipede(Actor):
     Attributes:
         _points (int): The number of points the food is worth.
     """
-    def __init__(self, color):
+    def __init__(self):
         super().__init__()
-        self._centipede_color = color
+        self._centipede_color = constants.RED
         self._segments = []
         self._prepare_body()
 

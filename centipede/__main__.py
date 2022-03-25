@@ -21,7 +21,7 @@ def main():
     # create the cast
     cast = Cast()
     cast.add_actor("foods", Food())
-    cast.add_actor("centipede", Centipede(constants.RED))
+    cast.add_actor("centipede", Centipede())
     cast.add_actor("scores", Score())
     cast.add_actor("robot", Robot(constants.GREEN))
    
