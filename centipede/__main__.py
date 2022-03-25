@@ -1,7 +1,7 @@
 import constants
 
 from game.casting.cast import Cast
-from game.casting.food import Food
+from game.casting.barrier import Barrier
 from game.casting.score import Score
 from game.casting.centipede import Centipede
 from game.casting.robot import Robot
@@ -20,7 +20,7 @@ def main():
     
     # create the cast
     cast = Cast()
-    cast.add_actor("foods", Food())
+    cast.add_actor("barriers", Barrier(cast))
     cast.add_actor("centipede", Centipede())
     cast.add_actor("scores", Score())
     cast.add_actor("robot", Robot(constants.GREEN))

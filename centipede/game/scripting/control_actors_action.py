@@ -42,13 +42,22 @@ class ControlActorsAction(Action):
 
     def _centipede_movement(self, cast):
         centipede = cast.get_first_actor("centipede")
+        barriers = cast.get_actors("barriers")
 
         my_head = centipede.get_segments()[0]
         my_position = my_head.get_position()
+        move_right = my_position.add(Point(constants.CELL_SIZE, 0))
+        move_left = my_position.add(Point(-constants.CELL_SIZE, 0))
         my_velocity = my_head.get_velocity()
+        dodge_barrier = False
+
+        for barrier in barriers:
+            if (move_right.equals(barrier.get_position())) or (move_left.equals(barrier.get_position())):
+                dodge_barrier = True
+                break
 
         if self._rotate == 0:
-            if (my_position.get_x() <= 0) or (my_position.get_x() + constants.CELL_SIZE >= constants.MAX_X):
+            if ((my_position.get_x() <= 0) or (my_position.get_x() + constants.CELL_SIZE >= constants.MAX_X)) or dodge_barrier:
                 self._previous_direction = my_velocity.get_x()
                 centipede.turn_head(self._move_down)
                 self._rotate = 1
