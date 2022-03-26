@@ -1,8 +1,8 @@
 from game.shared.color import Color
 
 
-COLUMNS = 40
-ROWS = 20
+COLUMNS = 60
+ROWS = 30
 CELL_SIZE = 15
 MAX_X = 900
 MAX_Y = 600

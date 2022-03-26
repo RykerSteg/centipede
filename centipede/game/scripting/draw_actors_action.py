@@ -27,7 +27,7 @@ class DrawActorsAction(Action):
             script (Script): The script of Actions in the game.
         """
         score = cast.get_first_actor("scores")
-        # food = cast.get_first_actor("foods")
+        barrier = cast.get_actors("barriers")
         centipede = cast.get_actors("centipede")
         centipede1 = centipede[0]
         centipede_segments = centipede1.get_segments()
@@ -35,7 +35,7 @@ class DrawActorsAction(Action):
         robot = cast.get_first_actor("robot")
 
         self._video_service.clear_buffer()
-        # self._video_service.draw_actor(food)
+        self._video_service.draw_actors(barrier)
         self._video_service.draw_actors(centipede_segments)
         self._video_service.draw_actor(robot)
         self._video_service.draw_actor(score)
