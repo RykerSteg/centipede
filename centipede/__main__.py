@@ -1,3 +1,4 @@
+from centipede.centipede.game.casting.bullet import Bullet
 import constants
 
 from game.casting.cast import Cast
@@ -24,6 +25,7 @@ def main():
     cast.add_actor("centipede", Centipede())
     cast.add_actor("scores", Score())
     cast.add_actor("robot", Robot(constants.GREEN))
+    cast.add_actor("bullet", Bullet(constants.WHITE))
    
     # start the game
     keyboard_service = KeyboardService()
