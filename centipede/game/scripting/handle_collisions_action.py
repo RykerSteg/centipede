@@ -56,6 +56,11 @@ class HandleCollisionsAction(Action):
         centipede = cast.get_first_actor("centipede")
         head = centipede.get_segments()[0]
         segments = centipede.get_segments()[1:]
+        robot = cast.get_first_actor("robot")
+        
+
+        if head.get_position().equals(robot.get_position()):
+            self._is_game_over = True
         
         for segment in segments:
             if head.get_position().equals(segment.get_position()):
