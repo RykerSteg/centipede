@@ -1,5 +1,6 @@
 #from centipede.centipede.constants import CELL_SIZE
 #from centipede.centipede.game.casting.centipede import Centipede
+from centipede.game.casting.bullet import Bullet
 import constants
 
 from game.scripting.action import Action
@@ -39,6 +40,7 @@ class ControlActorsAction(Action):
         """    
         self._centipede_movement(cast)
         self._robot_movement(cast)
+        self._bullet_movement(cast)
 
     def _centipede_movement(self, cast):
         centipede = cast.get_first_actor("centipede")
@@ -77,3 +79,8 @@ class ControlActorsAction(Action):
             robotDirection = Point(constants.CELL_SIZE, 0)
         
         robot.set_velocity(robotDirection)
+
+    def _bullet_movement(self, cast):
+        bullet = cast.get_first_actor("bullet")
+        fire = Bullet.get_position().add(Point(0, constants.CELL_SIZE))
+        
