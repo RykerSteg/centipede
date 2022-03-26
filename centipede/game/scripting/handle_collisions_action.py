@@ -55,9 +55,11 @@ class HandleCollisionsAction(Action):
         # score = cast.get_first_actor("scores")
         # food = cast.get_first_actor("foods")
         # centipede = cast.get_first_actor("centipede")
+        # bullet = cast.get_first_actor("bullet")
         # head = centipede.get_head()
+        
 
-        # if head.get_position().equals(bullet.get_position()):
+        # if centipede.get_position().equals(bullet.get_position()):
         #     points = food.get_points()
         #     centipede.shrink_tail()
         #     score.add_points(points)
