@@ -1,4 +1,3 @@
-from centipede.centipede.game.casting.bullet import Bullet
 import constants
 
 from game.casting.cast import Cast
@@ -6,6 +5,7 @@ from game.casting.barrier import Barrier
 from game.casting.score import Score
 from game.casting.centipede import Centipede
 from game.casting.robot import Robot
+from game.casting.bullet import Bullet
 from game.scripting.script import Script
 from game.scripting.control_actors_action import ControlActorsAction
 from game.scripting.move_actors_action import MoveActorsAction

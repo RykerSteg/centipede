@@ -12,8 +12,8 @@ class Bullet(Actor):
     self.set_color(color)
     self.prepare_body()
 
-  def prepare_body(self):
-    position = Robot.set_position()    #Same position as robot
+  def prepare_body(self, Robot):
+    position = Robot.get_position()    #Same position as robot
     text = "o"
 
     self.set_velocity(Point(0,2)) #Velocity of the bullet moving upward

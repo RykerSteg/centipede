@@ -1,12 +1,13 @@
 #from centipede.centipede.constants import CELL_SIZE
 #from centipede.centipede.game.casting.centipede import Centipede
-from centipede.game.casting.bullet import Bullet
+
 import constants
 
 from game.scripting.action import Action
 from game.shared.point import Point
 from game.casting.centipede import Centipede
 from game.casting.robot import Robot
+from game.casting.bullet import Bullet
 
 
 class ControlActorsAction(Action):
@@ -82,5 +83,5 @@ class ControlActorsAction(Action):
 
     def _bullet_movement(self, cast):
         bullet = cast.get_first_actor("bullet")
-        fire = Bullet.get_position().add(Point(0, constants.CELL_SIZE))
+        fire = bullet.add(Point(0, constants.CELL_SIZE))
         
