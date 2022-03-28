@@ -83,5 +83,6 @@ class ControlActorsAction(Action):
 
     def _bullet_movement(self, cast):
         bullet = cast.get_first_actor("bullet")
-        fire = bullet.add(Point(0, constants.CELL_SIZE))
+        position = bullet.get_position()
+        position.add(Point(0, constants.CELL_SIZE))
         

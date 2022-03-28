@@ -6,9 +6,9 @@ class Robot(Actor):
   '''
   Our blaster thing that is limited to left and right movements at the bottom the the screen
   '''
-  def __init__(self, color):
+  def __init__(self):
     super().__init__()
-    self.set_color(color)
+    self.set_color(constants.GREEN)
     self.prepare_body()
 
   def prepare_body(self):
