@@ -7,17 +7,17 @@ class Bullet(Actor):
   '''
   Bullets that appear on the screen and move upwards toward the centipede.
   '''
-  def __init__(self):
+  def __init__(self, cast):
     super().__init__()
     self.set_color(constants.WHITE)
-    robot = Robot()
-    robot_position = robot.get_position() #same position as the Robot
-    position = robot_position.add(Point(0, constants.CELL_SIZE))
-    self.prepare_body(position)
+    self.prepare_body(cast)
 
-  def prepare_body(self, position):
-    text = "o"
+  def prepare_body(self, cast):
+    robot = cast.get_first_actor("robot")
+    robot_position = robot.get_position()
+    my_position = robot_position.add(Point(0, -constants.CELL_SIZE))
+    text = "*"
 
-    self.set_velocity(Point(0,2)) #Velocity of the bullet moving upward
-    self.set_position(position)    
+    self.set_velocity(Point(0, -2 * constants.CELL_SIZE)) #Velocity of the bullet moving upward
+    self.set_position(my_position)
     self.set_text(text)

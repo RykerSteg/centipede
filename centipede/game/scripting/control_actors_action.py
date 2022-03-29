@@ -78,11 +78,17 @@ class ControlActorsAction(Action):
         # right
         if self._keyboard_service.is_key_down('d'):
             robotDirection = Point(constants.CELL_SIZE, 0)
-        
+
         robot.set_velocity(robotDirection)
 
     def _bullet_movement(self, cast):
-        bullet = cast.get_first_actor("bullet")
-        position = bullet.get_position()
-        position.add(Point(0, constants.CELL_SIZE))
+        bullets = cast.get_actors("bullet")
+
+        for bullet in bullets:
+            my_position = bullet.get_position()
+            if my_position.get_y() <= 0:
+                cast.remove_actor("bullet", bullet)
         
+        # shoot
+        if self._keyboard_service.is_key_down('space'):
+            cast.add_actor("bullet", Bullet(cast))
