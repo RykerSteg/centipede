@@ -25,7 +25,7 @@ def main():
     cast.add_actor("centipede", Centipede())
     cast.add_actor("scores", Score())
     cast.add_actor("robot", Robot())
-    cast.add_actor("bullet", Bullet())
+    #cast.add_actor("bullet", Bullet(cast))
    
     # start the game
     keyboard_service = KeyboardService()
