@@ -36,27 +36,12 @@ class HandleCollisionsAction(Action):
         Args:
             cast (Cast): The cast of Actors in the game.
         """
-        #Snakes code
-        # score = cast.get_first_actor("scores")
-        # food = cast.get_first_actor("foods")
-        # snake = cast.get_first_actor("snakes")
-        # head = snake.get_head()
-
-        # if head.get_position().equals(food.get_position()):
-        #     points = food.get_points()
-        #     snake.shrink_tail()
-        #     score.add_points(points)
-        #     food.reset()
-
-
-
-
         #centipedes code
         # score = cast.get_first_actor("scores")
-        # food = cast.get_first_actor("foods")
+        # barriers = cast.get_actors("barrier")
         # centipede = cast.get_first_actor("centipede")
-        # bullet = cast.get_first_actor("bullet")
-        # head = centipede.get_head()
+        # centipede_segments = centipede.get_segments()
+        # bullets = cast.get_actors("bullet")  
         
 
         # if centipede.get_position().equals(bullet.get_position()):

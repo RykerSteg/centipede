@@ -18,6 +18,6 @@ class Bullet(Actor):
     my_position = robot_position.add(Point(0, -constants.CELL_SIZE))
     text = "*"
 
-    self.set_velocity(Point(0, -2 * constants.CELL_SIZE)) #Velocity of the bullet moving upward
+    self.set_velocity(Point(0, -1 * constants.CELL_SIZE)) #Velocity of the bullet moving upward
     self.set_position(my_position)
     self.set_text(text)
