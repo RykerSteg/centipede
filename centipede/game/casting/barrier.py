@@ -16,12 +16,12 @@ class Barrier(Actor):
     def __init__(self, cast):
         "Constructs a new Food."
         super().__init__()
-        self._points = 0
+        self._points = 50
         self.spawn_barrier(cast)
         
     def spawn_barrier(self, cast):
         """Selects a random position and points that the food is worth."""
-        barrier_count =random.randint(15, 25)
+        barrier_count =random.randint(20, 30)
 
         for n in range(barrier_count):
             x = random.randint(2, constants.COLUMNS - 3)
@@ -33,6 +33,7 @@ class Barrier(Actor):
             barrier.set_text("@")
             barrier.set_color(constants.YELLOW)
             barrier.set_position(position)
+            barrier.set_points(self._points)
             cast.add_actor("barriers", barrier)
 
         

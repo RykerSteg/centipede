@@ -26,31 +26,52 @@ class HandleCollisionsAction(Action):
             script (Script): The script of Actions in the game.
         """
         if not self._is_game_over:
-            self._handle_food_collision(cast)
+            self._handle_bullet_collision(cast)
             self._handle_segment_collision(cast)
             self._handle_game_over(cast)
 
-    def _handle_food_collision(self, cast):
+    def _handle_bullet_collision(self, cast):
         """Updates the score nd moves the food if the snake collides with the food.
         
         Args:
             cast (Cast): The cast of Actors in the game.
         """
-        #centipedes code
-        # score = cast.get_first_actor("scores")
-        # barriers = cast.get_actors("barrier")
-        # centipede = cast.get_first_actor("centipede")
-        # centipede_segments = centipede.get_segments()
-        # bullets = cast.get_actors("bullet")  
+        # centipedes code
+        score = cast.get_first_actor("scores")
+        barriers = cast.get_actors("barriers")
+        centipede = cast.get_first_actor("centipede")
+        centipede_segments = centipede.get_segments()
+        bullets = cast.get_actors("bullet")  
         
+        for bullet in bullets:
+            for segment in centipede_segments:
+                if bullet.get_position().equals(segment.get_position()):
 
-        # if centipede.get_position().equals(bullet.get_position()):
-        #     points = food.get_points()
-        #     centipede.shrink_tail()
-        #     score.add_points(points)
-        #     food.reset()
+                    #points = segment.get_points()
+                    points = segment.get_points()
+                    score.add_points(points)
+                    centipede.shrink_tail()
+                    cast.remove_actor("bullet", bullet)
+                    #score.add_points(points)
+                   
+            for barrier in barriers:
+                if bullet.get_position().equals(barrier.get_position()):
+                    if barrier.get_color() == constants.YELLOW:
+                        points = barrier.get_points()
+                        score.add_points(points)
+                        barrier.set_color(constants.GREEN)
+                        cast.remove_actor("bullet", bullet)
+                    elif barrier.get_color() == constants.GREEN:
+                        points = barrier.get_points() + 25
+                        score.add_points(points)
+                        barrier.set_color(constants.BLUE)
+                        cast.remove_actor("bullet", bullet)
+                    else:
+                        points = barrier.get_points() + 50
+                        score.add_points(points)                       
+                        cast.remove_actor("barriers", barrier)
+                        cast.remove_actor("bullet", bullet)
 
-        pass
     def _handle_segment_collision(self, cast):
         """Sets the game over flag if the snake collides with one of its segments.
         
@@ -58,18 +79,16 @@ class HandleCollisionsAction(Action):
             cast (Cast): The cast of Actors in the game.
         """
         centipede = cast.get_first_actor("centipede")
-        head = centipede.get_segments()[0]
-        segments = centipede.get_segments()[1:]
-        robot = cast.get_first_actor("robot")
-        
-
-        if head.get_position().equals(robot.get_position()):
+        centipede_length = len(centipede.get_segments())
+        if  centipede_length < 1:
             self._is_game_over = True
-        
-        for segment in segments:
-            if head.get_position().equals(segment.get_position()):
+        else:
+            head = centipede.get_segments()[0]
+            robot = cast.get_first_actor("robot")
+            
+            if head.get_position().equals(robot.get_position()):
                 self._is_game_over = True
-        pass
+        
     def _handle_game_over(self, cast):
         """Shows the 'game over' message and turns the snake and food white if the game is over.
         
