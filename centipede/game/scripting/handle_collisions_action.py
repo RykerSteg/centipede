@@ -100,7 +100,7 @@ class HandleCollisionsAction(Action):
             position = Point(x, y)
 
             message = Actor()
-            message.set_text("You conquored the Centipede!")
+            message.set_text("You conquered the Centipede!")
             message.set_position(position)
             cast.add_actor("messages", message)                      
 
