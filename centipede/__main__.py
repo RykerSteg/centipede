@@ -5,7 +5,6 @@ from game.casting.barrier import Barrier
 from game.casting.score import Score
 from game.casting.centipede import Centipede
 from game.casting.robot import Robot
-from game.casting.bullet import Bullet
 from game.scripting.script import Script
 from game.scripting.control_actors_action import ControlActorsAction
 from game.scripting.move_actors_action import MoveActorsAction
@@ -25,7 +24,6 @@ def main():
     cast.add_actor("centipede", Centipede())
     cast.add_actor("scores", Score())
     cast.add_actor("robot", Robot())
-    #cast.add_actor("bullet", Bullet(cast))
    
     # start the game
     keyboard_service = KeyboardService()
