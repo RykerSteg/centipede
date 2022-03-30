@@ -16,6 +16,7 @@ class Centipede(Actor):
         super().__init__()
         self._centipede_color = constants.RED
         self._segments = []
+        self._points = 75
         self._prepare_body()
 
     def get_segments(self):
@@ -72,5 +73,6 @@ class Centipede(Actor):
             segment.set_position(position)
             segment.set_velocity(velocity)
             segment.set_text(text)
+            segment.set_points(self._points)
             segment.set_color(self._centipede_color)
             self._segments.append(segment)
