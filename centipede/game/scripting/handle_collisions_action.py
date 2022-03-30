@@ -85,9 +85,10 @@ class HandleCollisionsAction(Action):
         else:
             head = centipede.get_segments()[0]
             robot = cast.get_first_actor("robot")
-            
-            if head.get_position().equals(robot.get_position()):
-                self._is_game_over = True
+
+        #Game will end if the centipede collides with the robot
+        if head.get_position().equals(robot.get_position()):
+            self._is_game_over = True
         
     def _handle_game_over(self, cast):
         """Shows the 'game over' message and turns the snake and food white if the game is over.

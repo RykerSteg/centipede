@@ -15,6 +15,7 @@ class Bullet(Actor):
   def prepare_body(self, cast):
     robot = cast.get_first_actor("robot")
     robot_position = robot.get_position()
+    #make the bullet originate from the robots position
     my_position = robot_position.add(Point(0, -constants.CELL_SIZE))
     text = "*"
 
