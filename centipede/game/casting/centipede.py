@@ -7,10 +7,12 @@ class Centipede(Actor):
     """
     A long limbless reptile.
     
-    The responsibility of Snake is to move itself.
+    The responsibility of Centipede is to move itself.
 
     Attributes:
-        _points (int): The number of points the food is worth.
+        _points (int): The number of points the centipede segments are worth.
+        _centipede_color (tuple): The color of the centipede.
+        _segments (list): A list of all the segment pieces that make up the centipede
     """
     def __init__(self):
         super().__init__()
@@ -36,24 +38,8 @@ class Centipede(Actor):
     def get_head(self):
         return self._segments[0]
 
-    # def grow_tail(self, number_of_segments):
-        # for i in range(number_of_segments):
-        #     tail = self._segments[-1]
-        #     velocity = tail.get_velocity()
-        #     offset = velocity.reverse()
-        #     position = tail.get_position().add(offset)
-            
-        #     segment = Actor()
-        #     segment.set_position(position)
-        #     segment.set_velocity(velocity)
-        #     segment.set_text("#")
-        #     segment.set_color(self._centipede_color)
-        #     segment.set_color(self._centipede_color)
-        #     self._segments.append(segment)
     def shrink_tail(self):
             self._segments.pop(-1)
-
-
             
     def turn_head(self, velocity):
         self._segments[0].set_velocity(velocity)
@@ -63,11 +49,11 @@ class Centipede(Actor):
         x = int(20 * constants.CELL_SIZE)
         y = int(1 * constants.CELL_SIZE)
 
+        # Generates each segment with its required attributes
         for i in range(constants.SNAKE_LENGTH):
             position = Point(x - i * constants.CELL_SIZE, y)
             velocity = Point(1 * constants.CELL_SIZE, 0)
             text = "8" if i == 0 else "#"
-            # color = constants.YELLOW if i == 0 else constants.GREEN
             
             segment = Actor()
             segment.set_position(position)
