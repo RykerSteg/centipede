@@ -47,26 +47,27 @@ class ControlActorsAction(Action):
         centipede = cast.get_first_actor("centipede")
         barriers = cast.get_actors("barriers")
 
-        my_head = centipede.get_segments()[0]
-        my_position = my_head.get_position()
-        move_right = my_position.add(Point(constants.CELL_SIZE, 0))
-        move_left = my_position.add(Point(-constants.CELL_SIZE, 0))
-        my_velocity = my_head.get_velocity()
-        dodge_barrier = False
+        if len(centipede.get_segments()) > 0:
+            my_head = centipede.get_segments()[0]
+            my_position = my_head.get_position()
+            move_right = my_position.add(Point(constants.CELL_SIZE, 0))
+            move_left = my_position.add(Point(-constants.CELL_SIZE, 0))
+            my_velocity = my_head.get_velocity()
+            dodge_barrier = False
 
-        for barrier in barriers:
-            if (move_right.equals(barrier.get_position())) or (move_left.equals(barrier.get_position())):
-                dodge_barrier = True
-                break
+            for barrier in barriers:
+                if (move_right.equals(barrier.get_position())) or (move_left.equals(barrier.get_position())):
+                    dodge_barrier = True
+                    break
 
-        if self._rotate == 0:
-            if ((my_position.get_x() <= 0) or (my_position.get_x() + constants.CELL_SIZE >= constants.MAX_X)) or dodge_barrier:
-                self._previous_direction = my_velocity.get_x()
-                centipede.turn_head(self._move_down)
-                self._rotate = 1
-        else:
-            centipede.turn_head(Point(self._previous_direction * -1, 0))
-            self._rotate = 0
+            if self._rotate == 0:
+                if ((my_position.get_x() <= 0) or (my_position.get_x() + constants.CELL_SIZE >= constants.MAX_X)) or dodge_barrier:
+                    self._previous_direction = my_velocity.get_x()
+                    centipede.turn_head(self._move_down)
+                    self._rotate = 1
+            else:
+                centipede.turn_head(Point(self._previous_direction * -1, 0))
+                self._rotate = 0
 
     def _robot_movement(self, cast):
         robot = cast.get_first_actor("robot")
