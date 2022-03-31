@@ -19,6 +19,10 @@ class ControlActorsAction(Action):
         
         Args:
             keyboard_service (KeyboardService): An instance of KeyboardService.
+            direction (Point): used to save the current velocity of the centipede.
+            move_down (Point): set the velocity to move down.
+            previous_direction (Point): saves the current direction of the centipede.
+            rotate (int):
         """
         self._keyboard_service = keyboard_service
         self._direction = Point(constants.CELL_SIZE, 0)
