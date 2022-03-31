@@ -1,14 +1,8 @@
-#from centipede.centipede.constants import CELL_SIZE
-#from centipede.centipede.game.casting.centipede import Centipede
-
 import constants
 
 from game.scripting.action import Action
 from game.shared.point import Point
-from game.casting.centipede import Centipede
-from game.casting.robot import Robot
 from game.casting.bullet import Bullet
-
 
 class ControlActorsAction(Action):
     """
@@ -44,6 +38,11 @@ class ControlActorsAction(Action):
         self._bullet_movement(cast)
 
     def _centipede_movement(self, cast):
+        """Controls the movement of the centipede.
+
+        Args:
+            cast (Cast): The cast of Actors in the game.
+        """  
         centipede = cast.get_first_actor("centipede")
         barriers = cast.get_actors("barriers")
 
@@ -55,21 +54,36 @@ class ControlActorsAction(Action):
             my_velocity = my_head.get_velocity()
             dodge_barrier = False
 
+            # Finds barriers to the left or right of the centipede
             for barrier in barriers:
                 if (move_right.equals(barrier.get_position())) or (move_left.equals(barrier.get_position())):
                     dodge_barrier = True
                     break
 
+            # If there is a barrier to the left or right, this checks below the head
+            if dodge_barrier:
+                for barrier in barriers:
+                    if (my_position.add(Point(0, constants.CELL_SIZE)).equals(barrier.get_position())):
+                        self._previous_direction = my_velocity.get_x()
+                        self._rotate = 1
+                        break
+
+            # Checks for the edge of the screen or if a barrier is next to the centipede and moves it down
             if self._rotate == 0:
                 if ((my_position.get_x() <= 0) or (my_position.get_x() + constants.CELL_SIZE >= constants.MAX_X)) or dodge_barrier:
                     self._previous_direction = my_velocity.get_x()
                     centipede.turn_head(self._move_down)
                     self._rotate = 1
-            else:
+            else: # If the centipede is moving down, turn it left or right
                 centipede.turn_head(Point(self._previous_direction * -1, 0))
                 self._rotate = 0
 
     def _robot_movement(self, cast):
+        """Controls the movement of the Robot.
+
+        Args:
+            cast (Cast): The cast of Actors in the game.
+        """  
         robot = cast.get_first_actor("robot")
         robotDirection = Point(0,0)
         # left
@@ -83,6 +97,11 @@ class ControlActorsAction(Action):
         robot.set_velocity(robotDirection)
 
     def _bullet_movement(self, cast):
+        """Controls the creation of the bullet with spacebar or removal from hitting the top of the screen.
+
+        Args:
+            cast (Cast): The cast of Actors in the game.
+        """  
         bullets = cast.get_actors("bullet")
 
         for bullet in bullets:
