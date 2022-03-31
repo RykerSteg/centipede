@@ -6,21 +6,24 @@ from game.shared.point import Point
 
 class Barrier(Actor):
     """
-    A tasty item that snakes like to eat.
+    A barrier that will block centipede movement.
     
-    The responsibility of Food is to select a random position and points that it's worth.
+    The responsibility of Barrier is to select a random position and points that it's worth.
 
     Attributes:
-        _points (int): The number of points the food is worth.
+        _points (int): The number of points the barrier is worth.
     """
+
     def __init__(self, cast):
-        "Constructs a new Food."
+        """Constructs Barriers."""
+
         super().__init__()
         self._points = 50
         self.spawn_barrier(cast)
         
     def spawn_barrier(self, cast):
-        """Selects a random position and points that the food is worth."""
+        """Selects a random number of barriers and positions.  Also sets needed attributes."""
+        
         barrier_count =random.randint(20, 30)
 
         for n in range(barrier_count):
@@ -36,11 +39,11 @@ class Barrier(Actor):
             barrier.set_points(self._points)
             cast.add_actor("barriers", barrier)
 
-        
     def get_points(self):
-        """Gets the points the food is worth.
+        """
+        Gets the points the barrier is worth.
         
         Returns:
-            points (int): The points the food is worth.
+            points (int): The points the barrier is worth.
         """
         return self._points
